@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="styles.css">
+  <title>Document</title>
+</head>
+
+<body>
+  <div class="calendar-container">
+    <div class="calendar-header">
+      <button class="forwards-backward" id="backward">Vorheriger Monat</button>
+      <ul>
+        <li>
+          <span id="month">August</span>
+          <span id="year">2020</span>
+        </li>
+      </ul>
+      <button class="forwards-backward" id="forward">Nächster Monat</button>
+    </div>
+    
+    
+    <ul class="weekdays">
+      <li>Mo</li>
+      <li>Tu</li>
+      <li>We</li>
+      <li>Th</li>
+      <li>Fr</li>
+      <li>Sa</li>
+      <li>Su</li>
+    </ul>
+
+    
+  
+    <ul class="days" id="day-list">
+    </ul>
+    <div id="event-input">
+      <input type="text" id="event-title" placeholder="Event Title">
+      <input type="text" id="event-location" placeholder="Event Location">
+      <input type="text" id="event-organizer" placeholder="Event Organizer">
+      <input type="datetime-local" id="event-start" placeholder="Event Start">
+      <input type="datetime-local" id="event-end" placeholder="Event End">
+      <button id="add-event-btn">Add Event</button>
+    </div>
+
+    <div id="events-on-day">
+      <ol>
+        <tr>Events on day</tr>
+      </ol>
+    </div>
+    
+  
+  <script src="script.js"></script>
+</body>
+
+</html>

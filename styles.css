@@ -1,0 +1,92 @@
+/* Allgemeine Stile */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.calendar-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.calendar-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+button {
+  background-color: #fff;
+  border: none;
+  color: #333;
+  cursor: pointer;
+  padding: 5px 10px;
+  border-radius: 3px;
+  width: 150px; /* Feste Breite für die Buttons */
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+button:hover {
+  background-color: #f2f2f2;
+}
+
+#month {
+  font-weight: bold;
+  font-size: 24px;
+}
+
+.weekdays {
+  display: flex;
+}
+
+.weekdays li {
+  flex-basis: calc(100% / 7);
+  text-align: center;
+}
+
+.days {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  grid-gap: 10px;
+}
+
+.days li {
+  text-align: center;
+  padding: 10px;
+  background-color: #f2f2f2;
+}
+
+/* Spezifische Stile für den Kalender */
+.forwards-backward {
+  display: flex;
+  align-items: center;
+}
+
+#backward {
+  order: -1;
+  margin-right: 10px;
+}
+
+#forward {
+  order: 1;
+  margin-left: 10px;
+}
+
