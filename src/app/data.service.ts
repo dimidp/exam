@@ -1,25 +1,36 @@
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DataService {
 
-  private baseURL="http://dhbw.radicalsimplicity.com/calendar/"
   private accountName="3412747"
+  private baseURL=("http://dhbw.radicalsimplicity.com/calendar/"+this.accountName)
 
-  constructor(){}
 
+  constructor(private http: HttpClient) {}
 
-  getAllEvents(){}
+  getAllEvents(user: string) {
+    return this.http.get(`${this.baseURL}${user}/events`);
+  }
 
-  getEventByID(ID: number){}
+  getEventByID(user: string, eventID: number) {
+    return this.http.get(`${this.baseURL}${user}/events/${eventID}`);
+  }
 
-  editEvent(ID: number){}
+  createEvent(user: string, eventData: any) {
+    return this.http.post(`${this.baseURL}${user}/events`, eventData);
+  }
 
-  addevent(){}
+  updateEvent(user: string, eventID: number, eventData: any) {
+    return this.http.put(`${this.baseURL}${user}/events/${eventID}`, eventData);
+  }
 
-  deleteEvent(ID: number){}
+  deleteEvent(user: string, eventID: number) {
+    return this.http.delete(`${this.baseURL}${user}/events/${eventID}`);
+  }
 
   addImage(ID: number){}
 
