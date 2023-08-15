@@ -132,4 +132,8 @@ export class CalendarComponent implements OnInit {
   }
 
 
+  goToToday() {
+    this.currentDate = new Date(); 
+    this.generateCalendar(this.getMonthName(this.currentDate)); 
+  }
 }
