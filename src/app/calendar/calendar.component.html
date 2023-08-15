@@ -1,1 +1,25 @@
-<p>calendar works!</p>
+<div class="calendar">
+    <div class="navigation">
+        <button (click)="prevMonth()">Previous Month</button>
+        <button (click)="nextMonth()">Next Month</button>
+      </div>
+    <div class="month">{{ getMonthName(currentDate) }}</div>
+    <div class="weekdays">
+      <div class="weekday" *ngFor="let dayOfWeek of daysOfWeek">{{ dayOfWeek }}</div>
+    </div>
+    <div class="weeks">
+      <div class="week" *ngFor="let week of calendar">
+        <div
+          class="day"
+          *ngFor="let day of week"
+          [ngClass]="{ 'empty': !day.inMonth, 'current-day': isCurrentDay(day.date) }"
+        >
+          <div class="date">{{ day.date.getDate() }}</div>
+          <div class="events">
+            <div class="event" *ngFor="let event of day.events">{{ event }}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
