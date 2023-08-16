@@ -1,22 +1,36 @@
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { ConfigService } from './config.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CategoryService {
 
-  private baseURL = "http://dhbw.radicalsimplicity.com/categories/";
+  constructor(private http: HttpClient, private config: ConfigService) {}
 
-  constructor() {}
+  getAllCategories() {
+    return this.http.get(`${this.config.baseURL}/${this.config.user}/categories`);
+  }
 
-  getAllCategories() {}
+  createCategory(name: string) {
+    const category = { name };
+    return this.http.post(`${this.config.baseURL}/${this.config.user}/categories`, category);
+  }
 
-  getCategoryByID(ID: number) {}
+  getCategoryByID(categoryId: number) {
+    return this.http.get(`${this.config.baseURL}/${this.config.user}/categories/${categoryId}`);
+  }
 
-  editCategory(ID: number) {}
+  deleteCategory(categoryId: number) {
+    return this.http.delete(`${this.config.baseURL}/${this.config.user}/categories/${categoryId}`);
+  }
 
-  addCategory() {}
+  addEventToCategory(categoryId: number, eventId: number) {
+    return this.http.post(`${this.config.baseURL}/${this.config.user}/categories/${categoryId}/${eventId}`, {});
+  }
 
-  deleteCategory(ID: number) {}
-
+  removeEventFromCategory(categoryId: number, eventId: number) {
+    return this.http.delete(`${this.config.baseURL}/${this.config.user}/categories/${categoryId}/${eventId}`);
+  }
 }

@@ -1,41 +1,32 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { ConfigService } from './config.service';
+import { Event } from './event.interface'; // Import the Event interface
 
 @Injectable({
   providedIn: 'root'
 })
 export class DataService {
 
-  private accountName="3412747"
-  private baseURL=("http://dhbw.radicalsimplicity.com/calendar/"+this.accountName)
+  constructor(private http: HttpClient, private config: ConfigService) {}
 
-
-  constructor(private http: HttpClient) {}
-
-  getAllEvents(user: string) {
-    return this.http.get(`${this.baseURL}${user}/events`);
+  getAllEvents() {
+    return this.http.get<Event[]>(`${this.config.baseURL}/${this.config.user}/events`);
   }
 
-  getEventByID(user: string, eventID: number) {
-    return this.http.get(`${this.baseURL}${user}/events/${eventID}`);
+  getEventByID(eventID: number) {
+    return this.http.get<Event>(`${this.config.baseURL}/${this.config.user}/events/${eventID}`);
   }
 
-  createEvent(user: string, eventData: any) {
-    return this.http.post(`${this.baseURL}${user}/events`, eventData);
+  createEvent(eventData: any) {
+    return this.http.post<Event>(`${this.config.baseURL}/${this.config.user}/events`, eventData);
   }
 
-  updateEvent(user: string, eventID: number, eventData: any) {
-    return this.http.put(`${this.baseURL}${user}/events/${eventID}`, eventData);
+  updateEvent(eventID: number, eventData: any) {
+    return this.http.put<Event>(`${this.config.baseURL}/${this.config.user}/events/${eventID}`, eventData);
   }
 
-  deleteEvent(user: string, eventID: number) {
-    return this.http.delete(`${this.baseURL}${user}/events/${eventID}`);
+  deleteEvent(eventID: number) {
+    return this.http.delete<void>(`${this.config.baseURL}/${this.config.user}/events/${eventID}`);
   }
-
-  addImage(ID: number){}
-
-  removeImage(ID:number){}
-
-
-
 }
