@@ -4,8 +4,8 @@ export interface Event {
   title: string;
   location: string | null;
   organizer: string;
-  start: string; // Format: yyyy-MM-dd'T'HH:mm
-  end: string;   // Format: yyyy-MM-dd'T'HH:mm
+  start: string;
+  end: string;
   status: "Free" | "Busy" | "Tentative";
   allday: boolean;
   webpage: string | null;

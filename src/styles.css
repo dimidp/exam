@@ -2,3 +2,24 @@
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+/* Global styles */
+
+/* Apply the Indigo-Pink theme from Angular Material */
+@import '~@angular/material/prebuilt-themes/indigo-pink.css';
+
+/* Add any additional global styles */
+body {
+  font-family: 'Roboto', sans-serif;
+}
+
+/* Override Material's default focus styles */
+.mat-focused {
+  color: indigo;
+}
+
+/* Custom button style */
+.button-primary {
+  background-color: pink;
+  color: white;
+}
