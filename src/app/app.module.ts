@@ -24,6 +24,7 @@ import { FormsModule } from '@angular/forms';
 import { CategoryUserInputComponent } from './category-user-input/category-user-input.component';
 import { HeaderComponent } from './header/header.component';
 import { HomeComponent } from './home/home.component';
+import { CategoriesDisplayComponent } from './categories-display/categories-display.component';
 
 
 @NgModule({
@@ -36,6 +37,7 @@ import { HomeComponent } from './home/home.component';
     CategoryUserInputComponent,
     HeaderComponent,
     HomeComponent,
+    CategoriesDisplayComponent,
     
   ],
   imports: [

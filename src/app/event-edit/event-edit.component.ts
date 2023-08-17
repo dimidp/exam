@@ -22,8 +22,7 @@ export class EventEditComponent {
 
   updateEvent(event: Event) {
     this.dataService.updateEvent(event.id, event).subscribe(() => {
-      // After successfully updating the event, navigate back to the list display
-      this.router.navigate(['/']);
+      this.router.navigate(['/events']);
     });
   }
 }

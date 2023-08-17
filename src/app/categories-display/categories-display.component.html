@@ -1,0 +1,4 @@
+<div *ngFor="let category of categories$ | async" class="event-item">
+    <h2>{{ category.name }}</h2>
+    <button class="button-warn" (click)="editCategory(category.id)">Edit</button>
+  </div>
