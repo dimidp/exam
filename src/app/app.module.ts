@@ -19,6 +19,7 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatButtonModule } from '@angular/material/button';
 import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
+import { EventEditComponent } from './event-edit/event-edit.component';
 
 
 @NgModule({
@@ -27,6 +28,7 @@ import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
     CalendarComponent,
     EventUserInputComponent,
     ListDisplayComponent,
+    EventEditComponent,
     
   ],
   imports: [

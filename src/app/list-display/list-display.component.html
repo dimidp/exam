@@ -11,5 +11,6 @@
   <ul>
     <li *ngFor="let category of event.categories">{{ category.name }}</li>
   </ul>
+  <button class="button-warn" (click)="editEvent(event.id)">Edit</button>
   <button class="button-primary" (click)="deleteEvent(event.id)">Delete</button>
 </div>
