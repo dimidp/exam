@@ -15,14 +15,24 @@ export class CategoriesDisplayComponent {
   constructor(private router: Router, private categoryService: CategoryService) {}
 
   ngOnInit() {
-    this.loadEvents();
+    this.loadCategories();
   }
 
-  loadEvents() {
+  loadCategories() {
     this.categories$ = this.categoryService.getAllCategories();
   }
 
-  editCategory(categoryID: number){
+  deleteCategory(categoryId: number) {
+    this.categoryService.deleteCategory(categoryId).subscribe(
+      () => {
+        console.log('Category deleted successfully'); // Optional: Für Debugging-Zwecke
+        this.loadCategories(); // Kategorien neu laden
+      },
+      (error) => {
+        console.error('Error deleting category:', error); // Optional: Fehlerbehandlung
+      }
+    );
   }
-
+  
+ 
 }
