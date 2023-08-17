@@ -1,1 +1,57 @@
-<p>event-edit works!</p>
+<div *ngIf="(event$ | async) as event" class="event-edit">
+    <h2>Edit Event</h2>
+    <form (ngSubmit)="updateEvent(event)">
+      <mat-form-field>
+        <mat-label>Title</mat-label>
+        <input matInput [(ngModel)]="event.title" name="title" required>
+      </mat-form-field>
+      
+      <mat-form-field>
+        <mat-label>Location</mat-label>
+        <input matInput [(ngModel)]="event.location" name="location">
+      </mat-form-field>
+      
+      <mat-form-field>
+        <mat-label>Organizer</mat-label>
+        <input matInput [(ngModel)]="event.organizer" name="organizer" required>
+      </mat-form-field>
+      
+      <mat-form-field>
+        <mat-label>Start</mat-label>
+        <input matInput [(ngModel)]="event.start" name="start" required>
+      </mat-form-field>
+      
+      <mat-form-field>
+        <mat-label>End</mat-label>
+        <input matInput [(ngModel)]="event.end" name="end" required>
+      </mat-form-field>
+      
+      <mat-form-field>
+        <mat-label>Status</mat-label>
+        <mat-select [(ngModel)]="event.status" name="status" required>
+          <mat-option value="Free">Free</mat-option>
+          <mat-option value="Busy">Busy</mat-option>
+          <mat-option value="Tentative">Tentative</mat-option>
+        </mat-select>
+      </mat-form-field>
+      
+      <mat-checkbox [(ngModel)]="event.allday" name="allday">All Day</mat-checkbox>
+      
+      <mat-form-field>
+        <mat-label>Webpage</mat-label>
+        <input matInput [(ngModel)]="event.webpage" name="webpage">
+      </mat-form-field>
+      
+      <mat-form-field>
+        <mat-label>Categories</mat-label>
+        <mat-select [(ngModel)]="event.categories" name="categories" multiple required>
+          <mat-option *ngFor="let category of event.categories" [value]="category.id">
+            {{ category.name }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      
+      <button mat-raised-button color="primary" type="submit">Save Changes</button>
+    </form>
+  </div>
+  

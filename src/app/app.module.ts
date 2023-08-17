@@ -20,6 +20,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatButtonModule } from '@angular/material/button';
 import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
 import { EventEditComponent } from './event-edit/event-edit.component';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -44,7 +45,8 @@ import { EventEditComponent } from './event-edit/event-edit.component';
     MatNativeDateModule,
     MatFormFieldModule,
     MatButtonModule,
-    NgxMaterialTimepickerModule
+    NgxMaterialTimepickerModule,
+    FormsModule
   ],
   providers: [CategoryService, DataService],
   bootstrap: [AppComponent]
