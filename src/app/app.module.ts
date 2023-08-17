@@ -21,6 +21,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
 import { EventEditComponent } from './event-edit/event-edit.component';
 import { FormsModule } from '@angular/forms';
+import { CategoryUserInputComponent } from './category-user-input/category-user-input.component';
 
 
 @NgModule({
@@ -30,6 +31,7 @@ import { FormsModule } from '@angular/forms';
     EventUserInputComponent,
     ListDisplayComponent,
     EventEditComponent,
+    CategoryUserInputComponent,
     
   ],
   imports: [
