@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from '../data.service';
-import { Event } from '../event.interface'; // Import the Event interface
+import { Event } from '../event.interface';
 import { Observable } from 'rxjs';
-import { Router } from '@angular/router'; // Import Router
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-list-display',
@@ -21,10 +21,14 @@ export class ListDisplayComponent implements OnInit {
   loadEvents() {
     this.events$ = this.dataService.getAllEvents();
   }
+
   editEvent(eventId: number) {
     this.router.navigate(['/event', eventId, 'edit']);
   }
-  
+
+  viewEvent(eventId: number) {
+    this.router.navigate(['/event', eventId, 'view']); 
+  }
 
   deleteEvent(eventId: number) {
     this.dataService.deleteEvent(eventId).subscribe(() => {

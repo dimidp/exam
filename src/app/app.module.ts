@@ -25,6 +25,7 @@ import { CategoryUserInputComponent } from './category-user-input/category-user-
 import { HeaderComponent } from './header/header.component';
 import { HomeComponent } from './home/home.component';
 import { CategoriesDisplayComponent } from './categories-display/categories-display.component';
+import { EventDetailViewComponent } from './event-detail-view/event-detail-view.component';
 
 
 @NgModule({
@@ -38,6 +39,7 @@ import { CategoriesDisplayComponent } from './categories-display/categories-disp
     HeaderComponent,
     HomeComponent,
     CategoriesDisplayComponent,
+    EventDetailViewComponent,
     
   ],
   imports: [

@@ -1,0 +1,16 @@
+<div *ngIf="event$ | async as event" class="event-details">
+    <h2>{{ event.title }}</h2>
+    <p><strong>Location:</strong> {{ event.location }}</p>
+    <p><strong>Organizer:</strong> {{ event.organizer }}</p>
+    <p><strong>Start:</strong> {{ event.start }}</p>
+    <p><strong>End:</strong> {{ event.end }}</p>
+    <p><strong>Status:</strong> {{ event.status }}</p>
+    <p><strong>All Day:</strong> {{ event.allday ? 'Yes' : 'No' }}</p>
+    <p><strong>Webpage:</strong> <a href="{{ event.webpage }}" target="_blank">{{ event.webpage }}</a></p>
+    <p><strong>Categories:</strong></p>
+    <ul>
+      <li *ngFor="let category of event.categories">{{ category.name }}</li>
+    </ul>
+  </div>
+  <button class="button-secondary" (click)="goBack()">Back</button>
+  
