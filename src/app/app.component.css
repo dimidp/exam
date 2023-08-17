@@ -1,0 +1,15 @@
+/* styles.css (or your component's CSS) */
+
+.site {
+    display: flex;
+    flex-direction: column;
+    height: 100vh; /* Make the container take full viewport height */
+  }
+
+  
+  .content {
+    flex: 1; /* The content takes the remaining space */
+    padding: 20px;
+    overflow-y: auto; /* Enable vertical scrolling if content overflows */
+  }
+  
