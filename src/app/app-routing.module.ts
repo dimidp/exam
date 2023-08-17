@@ -3,7 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { EventEditComponent } from './event-edit/event-edit.component';
 import { HeaderComponent } from './header/header.component';
-
+import { HomeComponent } from './home/home.component';
 
 const routes: Routes = [
   { path: 'event/:id/edit', component: EventEditComponent },
