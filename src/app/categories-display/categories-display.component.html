@@ -1,4 +1,5 @@
+<app-category-user-input></app-category-user-input>
 <div *ngFor="let category of categories$ | async" class="event-item">
-    <h2>{{ category.name }}</h2>
-    <button  (click)="deleteCategory(category.id)">Delete</button>
-  </div>
+  <h2>{{ category.name }}</h2>
+  <button (click)="deleteCategory(category.id)">Delete</button>
+</div>
