@@ -1,6 +1,56 @@
-<h2>Event List</h2>
-<ul>
-  <li *ngFor="let event of events">
-    {{ event.title }} - {{ event.start }}
-  </li>
-</ul>
+<div>
+  <h2>Create New Event</h2>
+  <form [formGroup]="eventForm" (ngSubmit)="onSubmit()">
+    <mat-form-field>
+      <mat-label>Title</mat-label>
+      <input matInput formControlName="title" required>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Location</mat-label>
+      <input matInput formControlName="location">
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Organizer</mat-label>
+      <input matInput formControlName="organizer" required>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Start</mat-label>
+      <input matInput formControlName="start" placeholder="YYYY-MM-DD HH:mm" required>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>End</mat-label>
+      <input matInput formControlName="end" placeholder="YYYY-MM-DD HH:mm" required>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Status</mat-label>
+      <mat-select formControlName="status" required>
+        <mat-option value="Free">Free</mat-option>
+        <mat-option value="Busy">Busy</mat-option>
+        <mat-option value="Tentative">Tentative</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-checkbox formControlName="allday">All Day</mat-checkbox>
+
+    <mat-form-field>
+      <mat-label>Webpage</mat-label>
+      <input matInput formControlName="webpage">
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Categories</mat-label>
+      <mat-select formControlName="categories" multiple required>
+        <mat-option *ngFor="let category of (categories$ | async)" [value]="category.id">
+          {{ category.name }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <button type="submit" mat-raised-button color="primary">Create Event</button>
+  </form>
+</div>

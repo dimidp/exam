@@ -23,7 +23,6 @@ export class ListDisplayComponent implements OnInit {
 
   deleteEvent(eventId: number) {
     this.dataService.deleteEvent(eventId).subscribe(() => {
-      // After deletion, reload the events
       this.loadEvents();
     });
   }

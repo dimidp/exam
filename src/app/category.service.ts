@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { ConfigService } from './config.service';
+import { Category } from './category.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -10,8 +11,7 @@ export class CategoryService {
   constructor(private http: HttpClient, private config: ConfigService) {}
 
   getAllCategories() {
-    return this.http.get(`${this.config.baseURL}/${this.config.user}/categories`);
-  }
+    return this.http.get<Category[]>(`${this.config.baseURL}/${this.config.user}/categories`);  }
 
   createCategory(name: string) {
     const category = { name };

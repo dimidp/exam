@@ -8,20 +8,43 @@ import { CalendarComponent } from './calendar/calendar.component';
 import { EventUserInputComponent } from './event-user-input/event-user-input.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ListDisplayComponent } from './list-display/list-display.component'; 
+import { ReactiveFormsModule } from '@angular/forms'; // Import ReactiveFormsModule
+import { CategoryService } from './category.service';
+import { DataService } from './data.service';
+import { MatInputModule } from '@angular/material/input';
+import { MatSelectModule } from '@angular/material/select';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatButtonModule } from '@angular/material/button';
+import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
+
+
 @NgModule({
   declarations: [
     AppComponent,
     CalendarComponent,
     EventUserInputComponent,
     ListDisplayComponent,
+    
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule,
+    MatInputModule,
+    MatSelectModule,
+    MatCheckboxModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatFormFieldModule,
+    MatButtonModule,
+    NgxMaterialTimepickerModule
   ],
-  providers: [],
+  providers: [CategoryService, DataService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
