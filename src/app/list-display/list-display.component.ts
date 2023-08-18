@@ -12,10 +12,13 @@ import { Router } from '@angular/router';
 export class ListDisplayComponent implements OnInit {
   events$: Observable<Event[]> | undefined;
 
-  constructor(private router: Router, private dataService: DataService) {}
+  constructor(private router: Router, private dataService: DataService) { }
 
   ngOnInit() {
     this.loadEvents();
+
+    this.dataService.eventsChanged.subscribe(() => { this.loadEvents() })
+
   }
 
   loadEvents() {
@@ -27,12 +30,12 @@ export class ListDisplayComponent implements OnInit {
   }
 
   viewEvent(eventId: number) {
-    this.router.navigate(['/event', eventId, 'view']); 
+    this.router.navigate(['/event', eventId, 'view']);
   }
 
   deleteEvent(eventId: number) {
     this.dataService.deleteEvent(eventId).subscribe(() => {
-      this.loadEvents();
+      this.dataService.eventsChanged.emit()
     });
   }
 }

@@ -60,7 +60,7 @@ export class EventUserInputComponent implements OnInit{
       this.dataService.createEvent(eventData).subscribe(
         (createdEvent: Event) => {
           console.log('Event created:', createdEvent);
-          // You can perform additional actions like navigation or displaying a success message
+          this.dataService.eventsChanged.emit()
         },
         (error) => {
           console.error('Error creating event:', error);

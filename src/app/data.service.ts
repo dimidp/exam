@@ -1,15 +1,18 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { ConfigService } from './config.service';
-import { Event } from './event.interface'; 
+import { Event } from './event.interface';
 import { EventCreateData } from './eventCreateData.interface';
+import { EventEmitter } from '@angular/core';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DataService {
 
-  constructor(private http: HttpClient, private config: ConfigService) {}
+  eventsChanged = new EventEmitter<void>
+
+  constructor(private http: HttpClient, private config: ConfigService) { }
 
   getAllEvents() {
     return this.http.get<Event[]>(`${this.config.baseURL}/${this.config.user}/events`);
