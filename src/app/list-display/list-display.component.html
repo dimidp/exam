@@ -2,6 +2,16 @@
   <input matInput [(ngModel)]="searchQuery" (input)="onSearch()" placeholder="Search">
 </mat-form-field>
 
+<mat-form-field>
+  <mat-label>Filter by Category</mat-label>
+  <mat-select [(ngModel)]="selectedCategory" (ngModelChange)="onCategoryChange()">
+    <mat-option [value]="undefined">All Categories</mat-option>
+    <mat-option *ngFor="let category of allCategories" [value]="category.id">
+      {{ category.name }}
+    </mat-option>
+  </mat-select>
+</mat-form-field>
+
 <mat-paginator [length]="totalEvents"
               [pageSize]="pageSize"
               [pageSizeOptions]="[5, 10, 25, 100]"
