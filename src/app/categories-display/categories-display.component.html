@@ -1,4 +1,7 @@
-<app-category-user-input></app-category-user-input>
+<mat-form-field class="search-bar">
+  <input matInput (input)="onSearch($event)" placeholder="Search">
+</mat-form-field>
+
 <mat-paginator [length]="totalCategories"
               [pageSize]="pageSize"
               [pageSizeOptions]="[5, 10, 25, 100]"

@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Category } from '../category.interface';
-import { Observable, of } from 'rxjs'; // Importieren Sie "of" hier
+import { Observable, of } from 'rxjs';
 import { CategoryService } from '../category.service';
 import { Router } from '@angular/router';
 import { PageEvent } from '@angular/material/paginator';
-import { map } from 'rxjs/operators'; // Importieren Sie "map" hier
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-categories-display',
@@ -18,7 +18,7 @@ export class CategoriesDisplayComponent implements OnInit {
   currentPage: number = 0;
   pageSize: number = 10;
 
-  constructor(private router: Router, private categoryService: CategoryService) {}
+  constructor(private router: Router, private categoryService: CategoryService) { }
 
   ngOnInit() {
     this.loadCategories();
@@ -38,7 +38,7 @@ export class CategoriesDisplayComponent implements OnInit {
 
   onPageChange(event: PageEvent) {
     this.currentPage = event.pageIndex;
-    if (this.categories$) { // Überprüfen Sie, ob this.categories$ definiert ist
+    if (this.categories$) {
       this.pagedCategories$ = this.categories$.pipe(
         map(categories => {
           const startIndex = this.currentPage * this.pageSize;
@@ -48,7 +48,6 @@ export class CategoriesDisplayComponent implements OnInit {
       );
     }
   }
-  
 
   getPaginatedCategories(categories: Category[]): Observable<Category[]> {
     const startIndex = this.currentPage * this.pageSize;
@@ -66,4 +65,20 @@ export class CategoriesDisplayComponent implements OnInit {
       }
     );
   }
-}
+
+  onSearch(event: any) {
+    const query = event.target.value;
+    if (this.categories$) {
+      this.pagedCategories$ = this.categories$.pipe(
+        map(categories => {
+          const filteredCategories = categories.filter(category =>
+            category.name.toLowerCase().includes(query.toLowerCase())
+          );
+          this.totalCategories = filteredCategories.length;
+          const startIndex = this.currentPage * this.pageSize;
+          const endIndex = startIndex + this.pageSize;
+          return filteredCategories.slice(startIndex, endIndex);
+        })
+      );
+    }
+  }}
