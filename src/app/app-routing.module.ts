@@ -7,6 +7,7 @@ import { HomeComponent } from './home/home.component';
 import { CategoriesDisplayComponent } from './categories-display/categories-display.component';
 import { ListDisplayComponent } from './list-display/list-display.component';
 import { EventDetailViewComponent } from './event-detail-view/event-detail-view.component';
+import { CalendarComponent } from './calendar/calendar.component';
 
 const routes: Routes = [
   { path: 'event/:id/edit', component: EventEditComponent },
@@ -14,6 +15,8 @@ const routes: Routes = [
   { path: 'events', component: ListDisplayComponent },
   { path: 'categories', component: CategoriesDisplayComponent },
   { path: 'event/:id/view', component: EventDetailViewComponent },
+  { path: 'calendar', component: CalendarComponent },
+
 ];
 
 @NgModule({
