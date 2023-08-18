@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
 import { DataService } from '../data.service';
 import { OnInit } from '@angular/core';
+import { Event } from '../event.interface';
 
 export interface CalendarDay {
   date: Date;
-  events: string[];
+  events: Event[];
   weekday: string;
   inMonth: boolean;
 }
@@ -54,7 +55,7 @@ export class CalendarComponent implements OnInit {
   }
 
 
-  generateCalendarDay(date: Date, events: string[], weekday: string, inMonth: boolean): CalendarDay {
+  generateCalendarDay(date: Date, events: Event[], weekday: string, inMonth: boolean): CalendarDay {
     return {
       date,
       events,
@@ -87,7 +88,7 @@ export class CalendarComponent implements OnInit {
           dayCounter++;
         } else {
           const date = new Date(this.currentDate.getFullYear(), this.currentDate.getMonth(), dayCounter);
-          const events: string[] = [];
+          const events: Event[] = [];
           const weekday = this.daysOfWeek[j];
           const inMonth = true;
   
