@@ -1,17 +1,21 @@
 <app-category-user-input></app-category-user-input>
 
-<mat-form-field class="search-bar">
-  <input matInput (input)="onSearch($event)" placeholder="Search">
-</mat-form-field>
+<div class="search-paginator-container">
+  <mat-form-field class="search-bar">
+    <input matInput (input)="onSearch($event)" placeholder="Search">
+  </mat-form-field>
 
-<mat-paginator [length]="totalCategories"
-              [pageSize]="pageSize"
-              [pageSizeOptions]="[5, 10, 25, 100]"
-              (page)="onPageChange($event)"
-              aria-label="Select page">
-</mat-paginator>
+  <mat-paginator [length]="totalCategories"
+                [pageSize]="pageSize"
+                [pageSizeOptions]="[5, 10, 25, 100]"
+                (page)="onPageChange($event)"
+                aria-label="Select page"
+                class="paginator">
+  </mat-paginator>
+</div>
+
 
 <div *ngFor="let category of pagedCategories$ | async" class="event-item">
   <h2>{{ category.name }}</h2>
-  <button (click)="deleteCategory(category.id)">Delete</button>
+  <button mat-button color="warn" (click)="deleteCategory(category.id)">Delete</button>
 </div>

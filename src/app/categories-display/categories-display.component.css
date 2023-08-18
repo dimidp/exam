@@ -1,0 +1,61 @@
+/* Style for the container of search bar and paginator */
+.search-paginator-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 20px;
+  }
+  
+  /* Style for the search bar */
+  .search-bar {
+    flex: 1;
+    margin-right: 20px;
+  }
+  
+  /* Style for the pagination */
+  .mat-paginator {
+    flex: 1;
+    margin-left: 20px;
+  }
+  
+  /* Style for each category item */
+  .event-item {
+    background-color: white;
+    padding: 16px;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  /* Style for the category name */
+  .event-item h2 {
+    font-size: 18px;
+    margin: 0;
+  }
+  
+  /* Style for the delete button */
+  .event-item button {
+    border: none;
+    padding: 5px 10px;
+    border-radius: 3px;
+    cursor: pointer;
+    background-color: #f44336;
+    color: white;
+  }
+  
+  /* Hover effect for each category item */
+  .event-item:hover {
+    background-color: #f0f0f0;
+    transform: translateY(-2px);
+    transition: background-color 0.3s, transform 0.3s;
+  }
+  
+  /* Hover effect for the delete button */
+  .event-item button:hover {
+    background-color: #c82333;
+    transition: background-color 0.3s;
+  }
+  
