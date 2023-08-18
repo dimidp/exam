@@ -1,5 +1,12 @@
 <app-category-user-input></app-category-user-input>
-<div *ngFor="let category of categories$ | async" class="event-item">
+<mat-paginator [length]="totalCategories"
+              [pageSize]="pageSize"
+              [pageSizeOptions]="[5, 10, 25, 100]"
+              (page)="onPageChange($event)"
+              aria-label="Select page">
+</mat-paginator>
+
+<div *ngFor="let category of pagedCategories$ | async" class="event-item">
   <h2>{{ category.name }}</h2>
   <button (click)="deleteCategory(category.id)">Delete</button>
 </div>
