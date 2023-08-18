@@ -1,33 +1,39 @@
 
 <app-event-user-input></app-event-user-input>
+<div class="search-paginator-container">
+  <mat-form-field class="search-bar">
+    <input matInput [(ngModel)]="searchQuery" (input)="onSearch()" placeholder="Search">
+  </mat-form-field>
 
-<mat-form-field class="search-bar">
-  <input matInput [(ngModel)]="searchQuery" (input)="onSearch()" placeholder="Search">
-</mat-form-field>
+  <mat-form-field class="category-filter">
+    <mat-label>Filter by Category</mat-label>
+    <mat-select [(ngModel)]="selectedCategory" (ngModelChange)="onCategoryChange()">
+      <mat-option [value]="undefined">All Categories</mat-option>
+      <mat-option *ngFor="let category of allCategories" [value]="category.id">
+        {{ category.name }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
 
-<mat-form-field>
-  <mat-label>Filter by Category</mat-label>
-  <mat-select [(ngModel)]="selectedCategory" (ngModelChange)="onCategoryChange()">
-    <mat-option [value]="undefined">All Categories</mat-option>
-    <mat-option *ngFor="let category of allCategories" [value]="category.id">
-      {{ category.name }}
-    </mat-option>
-  </mat-select>
-</mat-form-field>
+  <mat-paginator class="paginator"
+                [length]="totalEvents"
+                [pageSize]="pageSize"
+                [pageSizeOptions]="[5, 10, 25, 100]"
+                (page)="onPageChange($event)"
+                aria-label="Select page">
+  </mat-paginator>
+</div>
 
-<mat-paginator [length]="totalEvents"
-              [pageSize]="pageSize"
-              [pageSizeOptions]="[5, 10, 25, 100]"
-              (page)="onPageChange($event)"
-              aria-label="Select page">
-</mat-paginator>
 
 <div *ngFor="let event of pagedEvents$ | async" class="event-item">   
   <h3>{{ event.title }}</h3>
-  <ul>
-    <li *ngFor="let category of event.categories">{{ category.name }}</li>
-  </ul>
-  <button class="button-warn" (click)="editEvent(event.id)">Edit</button>
-  <button class="button-primary" (click)="deleteEvent(event.id)">Delete</button>
-  <button class="button-secondary" (click)="viewEvent(event.id)">View</button>
+  <div class="categories-container">
+    <div *ngFor="let category of event.categories" class="category-box">
+      {{ category.name }}
+    </div>
+  </div>
+  <button mat-button class="button-warn" (click)="editEvent(event.id)">Edit</button>
+  <button mat-button class="button-primary" (click)="deleteEvent(event.id)">Delete</button>
+  <button mat-button class="button-secondary" (click)="viewEvent(event.id)">View</button>
 </div>
+
