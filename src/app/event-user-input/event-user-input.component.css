@@ -1,5 +1,41 @@
-#sakibBox{
-    display: flex;
-    flex-direction: row;
-
-}
+/* Style for the form container */
+div {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f5f5f5;
+  }
+  
+  /* Style for the submit button */
+  button {
+    margin-top: 10px;
+  }
+  
+  /* Style for input fields */
+  mat-form-field {
+    width: 100%;
+  }
+  
+  /* Style for the header */
+  h2 {
+    font-size: 24px;
+    margin-bottom: 15px;
+  }
+  
+  /* Style for labels */
+  mat-label {
+    font-weight: bold;
+  }
+  
+  /* Style for the checkbox */
+  mat-checkbox {
+    margin-top: 10px;
+  }
+  
+  /* Style for the Mat-Select */
+  mat-select {
+    width: 100%;
+  }
+  
