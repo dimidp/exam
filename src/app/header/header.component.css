@@ -37,3 +37,25 @@ header {
     color: #f0f0f0; /* Hover color */
   }
   
+  /* Style for the header */
+header {
+    background-color: #333; /* Adjust background color */
+    color: white; /* Text color */
+    padding: 10px 0;
+  }
+  
+  /* Style for the navigation */
+  nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  /* Style for the logo initials */
+  .logo {
+    font-size: 48px; /* Adjust the size as needed */
+    font-family: 'CoolFont', sans-serif; /* Replace 'CoolFont' with the actual font you want to use */
+  }
+  
