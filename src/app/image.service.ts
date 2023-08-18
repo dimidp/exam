@@ -20,5 +20,23 @@ export class ImageService {
   removeImageFromEvent(eventId: string) {
     const url = `${this.config.baseURL}/${this.config.user}/images/${eventId}`;
     return this.http.delete(url);
+
+    
+  }
+
+  imageToBase64(imageFile: File): Promise<string> {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+
+      reader.onload = (event: any) => {
+        resolve(event.target.result);
+      };
+
+      reader.onerror = (error) => {
+        reject(error);
+      };
+
+      reader.readAsDataURL(imageFile);
+    });
   }
 }
