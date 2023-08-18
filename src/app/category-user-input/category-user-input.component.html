@@ -1,12 +1,11 @@
-<div>
-    <h2>Create New Category</h2>
-    <form [formGroup]="categoryForm" (ngSubmit)="onSubmit()">
-      <mat-form-field>
-        <mat-label>Name</mat-label>
-        <input matInput formControlName="name" required>
-      </mat-form-field>
-  
-      <button type="submit" mat-raised-button color="primary">Create Category</button>
-    </form>
-  </div>
-  
+<div class="category-form-container">
+  <h2 class="category-header">Create New Category</h2>
+  <form [formGroup]="categoryForm" (ngSubmit)="onSubmit()">
+    <mat-form-field class="category-form-field">
+      <mat-label class="category-label">Name</mat-label>
+      <input matInput formControlName="name" required>
+    </mat-form-field>
+
+    <button type="submit" class="category-button" mat-raised-button color="primary">Create Category</button>
+  </form>
+</div>
