@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from '../data.service';
 import { Event } from '../event.interface';
-import { Observable, of } from 'rxjs'; // Importieren Sie "of" hier
+import { Observable, of } from 'rxjs';
 import { Router } from '@angular/router';
 import { PageEvent } from '@angular/material/paginator';
 import { map } from 'rxjs/operators';
@@ -13,11 +13,13 @@ import { map } from 'rxjs/operators';
 })
 export class ListDisplayComponent implements OnInit {
   events$: Observable<Event[]> = new Observable<Event[]>();
-pagedEvents$: Observable<Event[]> = new Observable<Event[]>();
+  pagedEvents$: Observable<Event[]> = new Observable<Event[]>();
 
   totalEvents: number = 0;
   currentPage: number = 0;
   pageSize: number = 10;
+
+  searchQuery: string = ''; // Hinzugefügt: Das ist die Suchanfrage
 
   constructor(private router: Router, private dataService: DataService) {}
 
@@ -32,26 +34,37 @@ pagedEvents$: Observable<Event[]> = new Observable<Event[]>();
   loadEvents() {
     this.dataService.getAllEvents().subscribe(events => {
       this.totalEvents = events.length;
-      this.events$ = of(events); // Verwenden Sie "of" hier
-      this.pagedEvents$ = this.getPaginatedEvents(events); // Setzen Sie pagedEvents$ auf die paginierten Ereignisse
+      this.events$ = of(events);
+      this.updatePagedEvents(events); // Änderung: aktualisierte Methode aufrufen
     });
   }
 
   onPageChange(event: PageEvent) {
     this.currentPage = event.pageIndex;
-    this.pagedEvents$ = this.events$.pipe(
-      map(events => {
-        const startIndex = this.currentPage * this.pageSize;
-        const endIndex = startIndex + this.pageSize;
-        return events.slice(startIndex, endIndex);
-      })
+    this.updatePagedEvents();
+  }
+
+  updatePagedEvents(events?: Event[]) {
+    if (!events) {
+      this.pagedEvents$ = this.events$.pipe(
+        map(events => this.applySearchFilter(events))
+      );
+    } else {
+      this.pagedEvents$ = of(this.applySearchFilter(events));
+    }
+  }
+
+  applySearchFilter(events: Event[]): Event[] {
+    return events.filter(event =>
+      event.title.toLowerCase().includes(this.searchQuery.toLowerCase())
+    ).slice(
+      this.currentPage * this.pageSize,
+      (this.currentPage + 1) * this.pageSize
     );
   }
 
-  getPaginatedEvents(events: Event[]): Observable<Event[]> {
-    const startIndex = this.currentPage * this.pageSize;
-    const endIndex = startIndex + this.pageSize;
-    return of(events.slice(startIndex, endIndex)); // Verwenden Sie "of" hier
+  onSearch() {
+    this.updatePagedEvents();
   }
 
   editEvent(eventId: number) {

@@ -1,4 +1,7 @@
-<app-event-user-input></app-event-user-input>
+<mat-form-field class="search-bar">
+  <input matInput [(ngModel)]="searchQuery" (input)="onSearch()" placeholder="Search">
+</mat-form-field>
+
 <mat-paginator [length]="totalEvents"
               [pageSize]="pageSize"
               [pageSizeOptions]="[5, 10, 25, 100]"
@@ -7,7 +10,7 @@
 </mat-paginator>
 
 <div *ngFor="let event of pagedEvents$ | async" class="event-item">   
-  <h3>{{event.title}}</h3>
+  <h3>{{ event.title }}</h3>
   <ul>
     <li *ngFor="let category of event.categories">{{ category.name }}</li>
   </ul>
