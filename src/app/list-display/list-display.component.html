@@ -1,7 +1,13 @@
 <app-event-user-input></app-event-user-input>
-<div *ngFor="let event of events$ | async" class="event-item">
-  <h2>{{ event.title }}</h2>
-  
+<mat-paginator [length]="totalEvents"
+              [pageSize]="pageSize"
+              [pageSizeOptions]="[5, 10, 25, 100]"
+              (page)="onPageChange($event)"
+              aria-label="Select page">
+</mat-paginator>
+
+<div *ngFor="let event of pagedEvents$ | async" class="event-item">   
+  <h3>{{event.title}}</h3>
   <ul>
     <li *ngFor="let category of event.categories">{{ category.name }}</li>
   </ul>

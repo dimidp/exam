@@ -26,6 +26,7 @@ import { HeaderComponent } from './header/header.component';
 import { HomeComponent } from './home/home.component';
 import { CategoriesDisplayComponent } from './categories-display/categories-display.component';
 import { EventDetailViewComponent } from './event-detail-view/event-detail-view.component';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 
 @NgModule({
@@ -56,7 +57,8 @@ import { EventDetailViewComponent } from './event-detail-view/event-detail-view.
     MatFormFieldModule,
     MatButtonModule,
     NgxMaterialTimepickerModule,
-    FormsModule
+    FormsModule,
+    MatPaginatorModule
   ],
   providers: [CategoryService, DataService],
   bootstrap: [AppComponent]
