@@ -16,6 +16,10 @@ export class CategoriesDisplayComponent {
 
   ngOnInit() {
     this.loadCategories();
+
+    this.categoryService.categoriesChanged.subscribe(() => {
+      this.loadCategories();  // Lade die Kategorien neu, wenn das Ereignis ausgelöst wird
+    });
   }
 
   loadCategories() {
@@ -25,8 +29,8 @@ export class CategoriesDisplayComponent {
   deleteCategory(categoryId: number) {
     this.categoryService.deleteCategory(categoryId).subscribe(
       () => {
-        console.log('Category deleted successfully'); // Optional: Für Debugging-Zwecke
-        this.loadCategories(); // Kategorien neu laden
+        this.categoryService.categoriesChanged.emit();  
+
       },
       (error) => {
         console.error('Error deleting category:', error); // Optional: Fehlerbehandlung

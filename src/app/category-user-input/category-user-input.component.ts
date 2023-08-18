@@ -23,6 +23,8 @@ export class CategoryUserInputComponent {
         (createdCategory) => {
           console.log('Category created:', createdCategory);
           this.categoryForm.reset();
+          this.categoryService.categoriesChanged.emit();  
+
         },
         (error) => {
           console.error('Error creating category:', error);

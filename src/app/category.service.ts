@@ -2,11 +2,14 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { ConfigService } from './config.service';
 import { Category } from './category.interface';
+import { EventEmitter } from '@angular/core';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CategoryService {
+
+  categoriesChanged = new EventEmitter<void>
 
   constructor(private http: HttpClient, private config: ConfigService) {}
 
