@@ -44,12 +44,13 @@
       
       <mat-form-field>
         <mat-label>Categories</mat-label>
-        <mat-select [(ngModel)]="event.categories" name="categories" multiple required>
-          <mat-option *ngFor="let category of event.categories" [value]="category.id">
+        <mat-select [(ngModel)]="selectedCategoryIds" name="categories" multiple required>
+          <mat-option *ngFor="let category of allCategories" [value]="category.id">
             {{ category.name }}
           </mat-option>
         </mat-select>
       </mat-form-field>
+      
       
       <button mat-raised-button color="primary" type="submit">Save Changes</button>
     </form>
