@@ -1,0 +1,69 @@
+/* Style for the event details container */
+.event-details {
+    background-color: white;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+  }
+  
+  /* Style for the event content */
+  .event-content {
+    display: flex;
+    align-items: flex-start;
+  }
+  
+  /* Style for the event info */
+  .event-info {
+    flex: 1;
+  }
+  
+  /* Style for the image upload container */
+  .image-upload-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-top: 10px;
+  }
+  
+  /* Style for the upload image button */
+  .image-upload-container button {
+    margin-top: 10px;
+  }
+  
+  /* Style for the event image container */
+  .image-container {
+    text-align: right;
+    margin-top: 20px;
+  }
+  
+  /* Style for the event image */
+  .event-image {
+    max-width: 100%;
+    height: auto;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 5px;
+  }
+  
+  /* Style for the placeholder box */
+  .placeholder-box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 150px;
+    border: 1px dashed #ccc;
+    border-radius: 5px;
+  }
+  
+  /* Style for the back button */
+  .button-secondary {
+    background-color: #6c757d;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 3px;
+    cursor: pointer;
+    margin-top: 20px;
+  }
+  
