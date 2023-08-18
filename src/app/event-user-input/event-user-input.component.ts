@@ -52,7 +52,7 @@ export class EventUserInputComponent implements OnInit{
         status: this.eventForm.value.status,
         allday: this.eventForm.value.allday,
         webpage: this.eventForm.value.webpage,
-        imagedata: 'data:image/png;base64,ImageContent', // Provide your image data here
+        imagedata: 'data:image/png;base64,ImageContent', 
         categories: this.eventForm.value.categories.map((categoryId: number) => ({ id: categoryId })),
         extra: null
       };
