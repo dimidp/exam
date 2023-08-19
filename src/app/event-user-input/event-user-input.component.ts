@@ -1,11 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { DataService } from '../data.service';
 import { CategoryService } from '../category.service';
 import { Observable } from 'rxjs';
 import { Category } from '../category.interface';
 import { EventCreateData } from '../eventCreateData.interface';
-import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-event-user-input',
@@ -21,6 +20,7 @@ export class EventUserInputComponent implements OnInit {
     private dataService: DataService,
     public categoryService: CategoryService
   ) {
+    // Initialize the event form with form controls and validators
     this.eventForm = this.fb.group({
       title: ['', Validators.required],
       location: [''],
@@ -37,13 +37,16 @@ export class EventUserInputComponent implements OnInit {
   }
 
   ngOnInit() {
+    // Fetch categories for dropdown
     this.categories$ = this.categoryService.getAllCategories();
   }
 
+  /**
+   * Handles form submission when the user submits the event form.
+   */
   onSubmit() {
     if (this.eventForm.valid) {
-      if (this.eventForm.valid) {
-        const isAllDay = this.eventForm.value.allday;
+      const isAllDay = this.eventForm.value.allday;
       const startDate = this.eventForm.value.startDate;
       const endDate = this.eventForm.value.endDate;
 
@@ -56,34 +59,34 @@ export class EventUserInputComponent implements OnInit {
         endDateTime = this.formatDateTime(endDate, '23:59', isAllDay);
       } else {
         endDateTime = this.formatDateTime(endDate, this.eventForm.value.endTime, isAllDay);
-      } 
+      }
 
-        const eventData: EventCreateData = {
-          title: this.eventForm.value.title,
-          location: this.eventForm.value.location,
-          organizer: this.eventForm.value.organizer,
-          start: startDateTime,
-          end: endDateTime,
-          status: this.eventForm.value.status,
-          allday: isAllDay,
-          webpage: this.eventForm.value.webpage,
-          categories: this.eventForm.value.categories.map((categoryId: number) => ({ id: categoryId })),
-          extra: null
-        };
-
-
-
-        this.dataService.createEvent(eventData).subscribe(
-          (createdEvent: any) => {
-            console.log('Event created:', createdEvent);
-            this.dataService.eventsChanged.emit();
-          },
-          (error) => {
-            console.error('Error creating event:', error);
-          }
-        )
+      // Prepare event data for creation
+      const eventData: EventCreateData = {
+        title: this.eventForm.value.title,
+        location: this.eventForm.value.location,
+        organizer: this.eventForm.value.organizer,
+        start: startDateTime,
+        end: endDateTime,
+        status: this.eventForm.value.status,
+        allday: isAllDay,
+        webpage: this.eventForm.value.webpage,
+        categories: this.eventForm.value.categories.map((categoryId: number) => ({ id: categoryId })),
+        extra: null
       };
+
+      // Create the event using the data service
+      this.dataService.createEvent(eventData).subscribe(
+        (createdEvent: any) => {
+          console.log('Event created:', createdEvent);
+          this.dataService.eventsChanged.emit();
+        },
+        (error) => {
+          console.error('Error creating event:', error);
+        }
+      );
     } else {
+      // Log form field errors if the form is not valid
       Object.keys(this.eventForm.controls).forEach(fieldName => {
         const control = this.eventForm.get(fieldName);
         if (control instanceof FormControl) {
@@ -92,6 +95,14 @@ export class EventUserInputComponent implements OnInit {
       });
     }
   }
+
+  /**
+   * Formats a date and time into a string suitable for API submission.
+   * @param date The date to be formatted.
+   * @param time The time to be formatted.
+   * @param isAllDay Indicates if the event is an all-day event.
+   * @returns A formatted date-time string.
+   */
   private formatDateTime(date: Date, time: string, isAllDay: boolean): string {
     const year = date.getFullYear();
     const month = String(date.getMonth() + 1).padStart(2, '0');

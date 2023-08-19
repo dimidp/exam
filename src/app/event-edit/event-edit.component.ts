@@ -17,20 +17,34 @@ export class EventEditComponent {
   allCategories: Category[] = [];
   selectedCategoryIds: number[] = [];
 
-  constructor(private categoryService: CategoryService, private route: ActivatedRoute, private router: Router, private dataService: DataService) {
+  constructor(
+    private categoryService: CategoryService,
+    private route: ActivatedRoute,
+    private router: Router,
+    private dataService: DataService
+  ) {
+    // Fetch event based on route parameter
     this.event$ = this.route.params.pipe(
       switchMap(params => this.dataService.getEventByID(+params['id']))
     );
 
+    // Load all categories for the category selection
     this.loadAllCategories();
   }
 
+  /**
+   * Loads all categories from the category service.
+   */
   loadAllCategories() {
     this.categoryService.getAllCategories().subscribe(categories => {
       this.allCategories = categories;
     });
   }
 
+  /**
+   * Updates the event with new data and navigates back to the events list.
+   * @param event The event with updated data.
+   */
   updateEvent(event: Event) {
     event.categories = this.selectedCategoryIds.map(id => this.allCategories.find(category => category.id === id)!);
     this.dataService.updateEvent(event.id, event).subscribe(() => {
@@ -38,6 +52,10 @@ export class EventEditComponent {
     });
   }
 
+  /**
+   * Toggles the selection of a category.
+   * @param categoryId The ID of the category to toggle.
+   */
   toggleCategory(categoryId: number) {
     if (this.selectedCategoryIds.includes(categoryId)) {
       this.selectedCategoryIds = this.selectedCategoryIds.filter(id => id !== categoryId);

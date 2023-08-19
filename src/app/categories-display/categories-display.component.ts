@@ -20,14 +20,21 @@ export class CategoriesDisplayComponent implements OnInit {
 
   constructor(private router: Router, private categoryService: CategoryService) { }
 
+  /**
+   * Lifecycle hook: Initializes the component and loads categories.
+   */
   ngOnInit() {
     this.loadCategories();
 
+    // Subscribe to category changes to update the list
     this.categoryService.categoriesChanged.subscribe(() => {
       this.loadCategories();
     });
   }
 
+  /**
+   * Loads all categories from the category service.
+   */
   loadCategories() {
     this.categoryService.getAllCategories().subscribe(categories => {
       this.totalCategories = categories.length;
@@ -36,6 +43,10 @@ export class CategoriesDisplayComponent implements OnInit {
     });
   }
 
+  /**
+   * Handles page change event.
+   * @param event The PageEvent object containing page change information.
+   */
   onPageChange(event: PageEvent) {
     this.currentPage = event.pageIndex;
     if (this.categories$) {
@@ -49,12 +60,21 @@ export class CategoriesDisplayComponent implements OnInit {
     }
   }
 
+  /**
+   * Returns an observable of paginated categories.
+   * @param categories The list of categories to paginate.
+   * @returns An observable of paginated categories.
+   */
   getPaginatedCategories(categories: Category[]): Observable<Category[]> {
     const startIndex = this.currentPage * this.pageSize;
     const endIndex = startIndex + this.pageSize;
     return of(categories.slice(startIndex, endIndex));
   }
 
+  /**
+   * Deletes a category using the category service.
+   * @param categoryId The ID of the category to delete.
+   */
   deleteCategory(categoryId: number) {
     this.categoryService.deleteCategory(categoryId).subscribe(
       () => {
@@ -66,6 +86,10 @@ export class CategoriesDisplayComponent implements OnInit {
     );
   }
 
+  /**
+   * Handles search event to filter categories based on the search query.
+   * @param event The input event containing the search query.
+   */
   onSearch(event: any) {
     const query = event.target.value;
     if (this.categories$) {
@@ -81,4 +105,5 @@ export class CategoriesDisplayComponent implements OnInit {
         })
       );
     }
-  }}
+  }
+}
