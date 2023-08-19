@@ -46,10 +46,10 @@ export class EventUserInputComponent implements OnInit {
         const isAllDay = this.eventForm.value.allday;
         const startDate = this.eventForm.value.startDate;
         const endDate = this.eventForm.value.endDate;
-    
+
         const startDateTime = this.formatDateTime(startDate, this.eventForm.value.startTime, isAllDay);
         const endDateTime = this.formatDateTime(endDate, this.eventForm.value.endTime, isAllDay);
-    
+
         const eventData: EventCreateData = {
           title: this.eventForm.value.title,
           location: this.eventForm.value.location,
@@ -62,18 +62,19 @@ export class EventUserInputComponent implements OnInit {
           categories: this.eventForm.value.categories.map((categoryId: number) => ({ id: categoryId })),
           extra: null
         };
-    
 
 
-      this.dataService.createEvent(eventData).subscribe(
-        (createdEvent: any) => {
-          console.log('Event created:', createdEvent);
-          this.dataService.eventsChanged.emit();
-        },
-        (error) => {
-          console.error('Error creating event:', error);
-        }
-      )};
+
+        this.dataService.createEvent(eventData).subscribe(
+          (createdEvent: any) => {
+            console.log('Event created:', createdEvent);
+            this.dataService.eventsChanged.emit();
+          },
+          (error) => {
+            console.error('Error creating event:', error);
+          }
+        )
+      };
     } else {
       Object.keys(this.eventForm.controls).forEach(fieldName => {
         const control = this.eventForm.get(fieldName);
@@ -87,15 +88,16 @@ export class EventUserInputComponent implements OnInit {
     const year = date.getFullYear();
     const month = String(date.getMonth() + 1).padStart(2, '0');
     const day = String(date.getDate()).padStart(2, '0');
-  
+
     if (isAllDay) {
       return `${year}-${month}-${day}T00:00`;
     }
-  
-    const [hours, minutes] = time.split(':').map(part => parseInt(part));
+
+    const [rawHours, minutes, period] = time.split(/:| /);
+    const hours = parseInt(rawHours) + (period === 'PM' ? 12 : 0);
     const formattedHours = String(hours).padStart(2, '0');
     const formattedMinutes = String(minutes).padStart(2, '0');
-    console.log(`${year}-${month}-${day}T${formattedHours}:${formattedMinutes}`)
+
     return `${year}-${month}-${day}T${formattedHours}:${formattedMinutes}`;
   }
 }
