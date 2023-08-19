@@ -16,7 +16,7 @@
       <button class="button-secondary" (click)="goBack()">Back</button>
     </div>
     <div class="image-container">
-      <div *ngIf="event.imageurl; else noImage">
+      <div *ngIf="event.imageurl;">
         <img [src]="event.imageurl" alt="Event Image" class="event-image">
       </div>
       <div class="image-upload-container">
@@ -25,14 +25,5 @@
       </div>
     </div>
   </div>
-  
-  <ng-template #noImage>
-    <div class="placeholder-box">
-      <span>No Image Found</span>
-    </div>
-    <div class="image-upload-container">
-      <input type="file" accept="image/*" (change)="onImageFileSelected($event)">
-      <button class="button-primary" (click)="uploadImage()">Upload Image</button>
-    </div>
-  </ng-template>
+
 </div>
