@@ -44,11 +44,19 @@ export class EventUserInputComponent implements OnInit {
     if (this.eventForm.valid) {
       if (this.eventForm.valid) {
         const isAllDay = this.eventForm.value.allday;
-        const startDate = this.eventForm.value.startDate;
-        const endDate = this.eventForm.value.endDate;
+      const startDate = this.eventForm.value.startDate;
+      const endDate = this.eventForm.value.endDate;
 
-        const startDateTime = this.formatDateTime(startDate, this.eventForm.value.startTime, isAllDay);
-        const endDateTime = this.formatDateTime(endDate, this.eventForm.value.endTime, isAllDay);
+      let startDateTime = this.formatDateTime(startDate, this.eventForm.value.startTime, isAllDay);
+      let endDateTime;
+
+      if (isAllDay) {
+        // For all-day events, set start time to 00:00 and end time to 23:59
+        startDateTime = this.formatDateTime(startDate, '00:00', isAllDay);
+        endDateTime = this.formatDateTime(endDate, '23:59', isAllDay);
+      } else {
+        endDateTime = this.formatDateTime(endDate, this.eventForm.value.endTime, isAllDay);
+      } 
 
         const eventData: EventCreateData = {
           title: this.eventForm.value.title,
@@ -88,10 +96,6 @@ export class EventUserInputComponent implements OnInit {
     const year = date.getFullYear();
     const month = String(date.getMonth() + 1).padStart(2, '0');
     const day = String(date.getDate()).padStart(2, '0');
-
-    if (isAllDay) {
-      return `${year}-${month}-${day}T00:00`;
-    }
 
     const [rawHours, minutes, period] = time.split(/:| /);
     const hours = parseInt(rawHours) + (period === 'PM' ? 12 : 0);
