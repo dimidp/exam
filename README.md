@@ -19,7 +19,7 @@ Welcome to the documentation for this Angular Event Management Application. This
 
 ## Introduction
 
-this is the exam projekt for Pierre Zimmermann and Dimitrios Patsiomitrios.
+this is the exam projekt for Pierre Zimmermann(3412747) and Dimitrios Patsiomitros(4999720).
 
 ## Project Structure
 
